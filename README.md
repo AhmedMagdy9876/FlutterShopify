@@ -1,12 +1,38 @@
 # flutter_shopping_app
 
-A new Flutter project.
+A Flutter-based shopping application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A dummy Flutter application designed for online shopping. You can browse products and add items to the cart.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+
+- Browse products and offers
+- Add items to the cart
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/flutter_shopping_app.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd flutter_shopping_app
+   ```
+3. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+4. Run the app:
+   ```sh
+   flutter run
+   ```
+
+## Resources
+
+A few resources to get you started with Flutter:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
