@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/heading_text.dart';
-import 'package:flutter_shopping_app/home_page.dart';
-import 'package:flutter_shopping_app/hot_offers_list_view.dart';
-import 'package:flutter_shopping_app/products_grid_view.dart';
-import 'package:flutter_shopping_app/products_page_view.dart';
 import 'sign_up_page.dart';
 
 void main() {
