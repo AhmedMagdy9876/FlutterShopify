@@ -1,4 +1,4 @@
-# flutter_shopping_app
+# Shopify
 
 A Flutter-based shopping application.
 
@@ -8,6 +8,7 @@ A dummy Flutter application designed for online shopping. You can browse product
 
 ## Features
 
+- Create a user account
 - Browse products and offers
 - Add items to the cart
 
@@ -30,13 +31,14 @@ A dummy Flutter application designed for online shopping. You can browse product
    flutter run
    ```
 
-## Resources
+## Code Overview
 
-A few resources to get you started with Flutter:
+The project is structured as follows:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- `main.dart`: the application entry-point.
+- `sign_up_page.dart`: the sign-up page widget.
+- `shopping_item_card.dart`: the shopping item card widget.
+- `products_page_view.dart`: a page view to display products.
+- `products_grid_view.dart`: a grid view to show products.
+- `hot_offers_list_view.dart`: a list view to display hot offers.
+- `heading_text.dart`: a heading text widget.
