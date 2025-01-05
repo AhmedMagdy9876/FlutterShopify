@@ -103,10 +103,25 @@ class _SignUpPageState extends State<SignUpPage> {
                             content: Text('You have signed up successfully'),
                             actions: [
                               TextButton(
-                                  onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => HomePage())),
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        PageRouteBuilder(
+                                            pageBuilder: (context, animation,
+                                                    secondaryAnimation) =>
+                                                HomePage(),
+                                            transitionsBuilder: (context,
+                                                animation,
+                                                secondaryAnimation,
+                                                child) {
+                                              return FadeTransition(
+                                                opacity: animation,
+                                                child: child,
+                                              );
+                                            },
+                                            transitionDuration:
+                                                Duration(seconds: 1)));
+                                  },
                                   child: Text('Close')),
                             ],
                           );

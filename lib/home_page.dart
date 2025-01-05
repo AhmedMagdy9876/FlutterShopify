@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
           HeadingText(text: 'Hot Offers!'),
           // Hot Offers ListView
           SizedBox(
-            height: MediaQuery.of(context).size.height / 2,
+            height: MediaQuery.of(context).size.height / 3,
             child: HotOffersListView(),
           ),
         ],

@@ -12,7 +12,8 @@ class ShoppingItemCard extends StatelessWidget {
     return Card(
       // Card padding
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/100),
+        padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height / 100),
         child: Column(
           // Spacing between elements
           spacing: MediaQuery.of(context).size.height / 80,
@@ -24,7 +25,11 @@ class ShoppingItemCard extends StatelessWidget {
             ),
             // Item image
             Expanded(
-              child: Image.network(imageUrl),
+              child: Image.network(
+                imageUrl,
+                loadingBuilder: (context, child, loadingProgress) =>
+                    Container(child: child),
+              ),
             ),
             // Add to cart button
             IconButton(
