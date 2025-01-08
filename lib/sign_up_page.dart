@@ -146,6 +146,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       );
                       return;
                     }
+
+                    // place sign-up query here
+
                     showDialog(
                         context: context,
                         builder: (context) {
