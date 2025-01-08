@@ -11,6 +11,8 @@ A dummy Flutter application designed for online shopping. You can browse product
 - Create a user account
 - Browse products and offers
 - Add items to the cart
+- Smooth animation between routes
+- App localization setting
 
 ## Installation
 
