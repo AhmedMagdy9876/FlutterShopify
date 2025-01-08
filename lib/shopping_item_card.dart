@@ -29,6 +29,8 @@ class ShoppingItemCard extends StatelessWidget {
                 imageUrl,
                 loadingBuilder: (context, child, loadingProgress) =>
                     Container(child: child),
+                errorBuilder: (context, error, stackTrace) =>
+                    Container(child: Text(error.toString())),
               ),
             ),
             // Add to cart button

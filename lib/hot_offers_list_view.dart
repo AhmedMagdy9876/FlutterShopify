@@ -25,6 +25,8 @@ class HotOffersListView extends StatelessWidget {
                 'https://picsum.photos/200/300?random=$index',
                 frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
                     Container(child: child),
+                errorBuilder: (context, error, stackTrace) =>
+                    Container(child: Text(error.toString())),
               ),
             ),
             // Offer title

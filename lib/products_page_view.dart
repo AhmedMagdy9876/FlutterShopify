@@ -14,11 +14,15 @@ class ProductsPageView extends StatelessWidget {
           'https://picsum.photos/200/300?random=1',
           frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
               Container(child: child),
+          errorBuilder: (context, error, stackTrace) =>
+              Container(child: Text(error.toString())),
         ),
         Image.network(
           'https://picsum.photos/200/300?random=2',
           frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
               Container(child: child),
+          errorBuilder: (context, error, stackTrace) =>
+              Text(error.toString()),
         ),
       ]),
     );

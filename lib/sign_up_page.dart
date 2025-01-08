@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_shopping_app/locale_dropdown.dart';
 
+// the sign-up page widget
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  final void Function(String? value)? localeChangeCallback;
+  final void Function()? signUpSuccessfulCallback;
+  const SignUpPage(
+      {super.key, this.localeChangeCallback, this.signUpSuccessfulCallback});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -22,36 +27,79 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Sign Up Page'),
+        title: Text(AppLocalizations.of(context)!.signUpPageTitle),
+        actions: [
+          LocaleDropdown(
+            // dropdown menu to set app locale
+            callback: widget.localeChangeCallback,
+          ),
+          SizedBox(
+            // dummy padding box
+            width: 20,
+          )
+        ],
       ),
       body: Center(
         child: Form(
+            // the user input form
             key: _formKey,
             child: Column(
               children: <Widget>[
                 // Full name field
                 TextFormField(
-                  validator: fullNameValidator,
+                  validator: (String? fullName) {
+                    if (fullName == null || fullName.isEmpty) {
+                      return AppLocalizations.of(context)!.fullNameEmptyMessage;
+                    }
+                    final regex = RegExp('^[A-Z]');
+                    if (!regex.hasMatch(fullName)) {
+                      return AppLocalizations.of(context)!
+                          .fullNameCapitalizedMessage;
+                    }
+                    return null;
+                  },
                   controller: _fullNameController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your full name',
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.fullNameHint,
                   ),
                 ),
                 // Email field
                 TextFormField(
-                  validator: emailAddressValidator,
+                  validator: (String? emailAddress) {
+                    if (emailAddress == null || emailAddress.isEmpty) {
+                      return AppLocalizations.of(context)!
+                          .emailAddressEmptyMessage;
+                    }
+                    var valid = emailAddress.contains('@');
+                    if (!valid) {
+                      return AppLocalizations.of(context)!
+                          .emailAddressInvalidMessage;
+                    }
+                    return null;
+                  },
                   controller: _emailAddressController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your email',
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.emailHint,
                   ),
                 ),
                 // Password field
                 TextFormField(
                   obscureText: _hidePassword,
-                  validator: passwordValidator,
+                  validator: (String? password) {
+                    if (password == null || password.isEmpty) {
+                      return AppLocalizations.of(context)!.passwordEmptyMessage;
+                    }
+
+                    if (password.length < 6) {
+                      return AppLocalizations.of(context)!
+                          .passwordTooShortMessage;
+                    }
+
+                    return null;
+                  },
                   controller: _passwordController,
                   decoration: InputDecoration(
-                      hintText: 'Enter your password',
+                      hintText: AppLocalizations.of(context)!.passwordHint,
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -67,13 +115,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   obscureText: _hideConfirmPassword,
                   validator: (value) {
                     if (_passwordController.text != value) {
-                      return 'Passwords do not match!';
+                      return AppLocalizations.of(context)!
+                          .confirmPasswordValidationMessage;
                     }
                     return null;
                   },
                   controller: _confirmPasswordController,
                   decoration: InputDecoration(
-                      hintText: 'Confirm your password',
+                      hintText:
+                          AppLocalizations.of(context)!.confirmPasswordHint,
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -90,9 +140,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     var validationResult = _formKey.currentState!.validate();
                     if (!validationResult) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text(
-                                'Input validation failed! Resolve errors and try again')),
+                        SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .signUpValidationFailureMessage)),
                       );
                       return;
                     }
@@ -100,72 +150,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            content: Text('You have signed up successfully'),
+                            content: Text(AppLocalizations.of(context)!
+                                .signUpSuccessMessage),
                             actions: [
                               TextButton(
                                   onPressed: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        PageRouteBuilder(
-                                            pageBuilder: (context, animation,
-                                                    secondaryAnimation) =>
-                                                HomePage(),
-                                            transitionsBuilder: (context,
-                                                animation,
-                                                secondaryAnimation,
-                                                child) {
-                                              return FadeTransition(
-                                                opacity: animation,
-                                                child: child,
-                                              );
-                                            },
-                                            transitionDuration:
-                                                Duration(seconds: 1)));
+                                    widget.signUpSuccessfulCallback?.call();
                                   },
-                                  child: Text('Close')),
+                                  child: Text(
+                                      AppLocalizations.of(context)!.close)),
                             ],
                           );
                         });
                   },
-                  child: const Text('Sign Up'),
+                  child: Text(AppLocalizations.of(context)!.signUp),
                 ),
               ],
             )),
       ),
     );
   }
-}
-
-String? fullNameValidator(String? fullName) {
-  if (fullName == null || fullName.isEmpty) {
-    return 'Full name cannot be empty!';
-  }
-  final regex = RegExp('^[A-Z]');
-  if (!regex.hasMatch(fullName)) {
-    return 'Full name need be capitalized!';
-  }
-  return null;
-}
-
-String? emailAddressValidator(String? emailAddress) {
-  if (emailAddress == null || emailAddress.isEmpty) {
-    return 'Email address may not be empty!';
-  }
-  var valid = emailAddress.contains('@');
-  if (!valid) {
-    return 'Please enter a valid email address!';
-  }
-  return null;
-}
-
-String? passwordValidator(String? password) {
-  if (password == null || password.isEmpty) {
-    return 'Password may not be empty!';
-  }
-
-  if (password.length < 6) {
-    return 'Password has to be at least 6 characters!';
-  }
-
-  return null;
 }

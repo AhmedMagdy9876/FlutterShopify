@@ -1,0 +1,21 @@
+{
+    "title":"شوبيفاي",
+    "signUpPageTitle": "تسجيل مستخدم",
+    "ourProductsSectionTitle": "منتجاتنا",
+    "hotOffersSectionTitle": "عروض ساخنة",
+    "fullNameHint": "أدخل اسمك بالكامل",
+    "emailHint": "أدخل بريدك الإلكتروني",
+    "passwordHint": "أدخل كلمة السر",
+    "confirmPasswordHint": "أعد إدخال كلمة السر",
+    "confirmPasswordValidationMessage": "كلمة السر غير متطابقة!",
+    "signUpSuccessMessage": "تم التسجيل بنجاح",
+    "signUpValidationFailureMessage": "فشل التحقق من الدخل! عالج الأخطاء وحاول مجدداً.",
+    "close": "إغلاق",
+    "signUp": "تسجيل",
+    "fullNameEmptyMessage": "اسم المستخدم فارغ!",
+    "fullNameCapitalizedMessage": "اسم المستخدم يجب أن يبدأ بحرف كبير!",
+    "emailAddressEmptyMessage": "البريد الإلكتروني فارغ!",
+    "emailAddressInvalidMessage": "البريد الإلكتروني غير صالح!",
+    "passwordEmptyMessage": "كلمة السر فارغة!",
+    "passwordTooShortMessage": "كلمة السر ينبغي أن تكون أطول من 6 حروف!"
+}
